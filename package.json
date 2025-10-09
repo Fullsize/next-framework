@@ -9,10 +9,15 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "crypto-js": "^4.2.0",
+    "js-cookies": "^1.0.4",
+    "localforage": "^1.10.0",
     "next": "15.5.4",
     "next-intl": "^4.3.11",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "react-use": "^17.6.0",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
