@@ -1,6 +1,6 @@
 "use client";
 import { useTranslations } from "next-intl";
-
+import { TFunction } from "@/i18n/type";
 export default function HomePage() {
   const i18n = useTranslations();
 
