@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { useSetState } from "react-use";
 import useBearStore from "@/store/useGobal";
 import { Button } from "antd";
-import "@ant-design/v5-patch-for-react-19";
 export default function Page({
   params,
 }: {

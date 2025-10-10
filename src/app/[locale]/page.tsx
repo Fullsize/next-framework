@@ -1,7 +1,7 @@
 import { useT } from "@/hooks";
 import Image from "next/image";
 import type { Metadata } from "next";
-
+import React from "react";
 export const metadata: Metadata = {
   title: "My Blog",
   description: "...",
@@ -11,14 +11,18 @@ export async function generateStaticParams() {
   return [{ locale: "en" }, { locale: "zh" }];
 }
 
-export default function HomePage({ params }: { params: { locale: string } }) {
+export default function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
   const t = useT();
-
+  const { locale } = React.use(params);
   return (
-    <div>
-      <h1>{t("title")}</h1>
+    <>
+      <h1 className="text-[red]">{t("title")}</h1>
       <Image src="/next.svg" width={200} height={80} alt="logo" />
-      <p>当前语言：{params.locale}</p>
-    </div>
+      <p>当前语言：{locale}</p>
+    </>
   );
 }

@@ -3,8 +3,9 @@ import { getMessages } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { notFound } from "next/navigation";
+import Header from "@/components/header";
+import "normalize.css";
 import "../globals.css";
-import "@ant-design/v5-patch-for-react-19";
 export default async function LocaleLayout({
   children,
   params,
@@ -25,9 +26,14 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body>
-        <AntdRegistry>
-          <NextIntlClientProvider>{children}</NextIntlClientProvider>
-        </AntdRegistry>
+        <div className="absolute left-0 top-0 w-full h-full flex flex-col">
+          <Header />
+          <div className="flex-1">
+            <AntdRegistry>
+              <NextIntlClientProvider>{children}</NextIntlClientProvider>
+            </AntdRegistry>
+          </div>
+        </div>
       </body>
     </html>
   );
