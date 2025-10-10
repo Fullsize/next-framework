@@ -1,22 +1,29 @@
 "use client";
 import React, { useEffect } from "react";
 import { useSetState } from "react-use";
+import useBearStore from "@/store/useGobal";
 export default function Page({
   params,
 }: {
   params: Promise<{ locale: string; level: string }>;
 }) {
-  const { locale, level } = React.use(params);
-  const [state, setState] = useSetState({
-    a: 1,
-  });
+  // const { bears, setState, hydrated } = useBearStore();
+  const bears = useBearStore((state) => state.bears);
+  const hydrated = useBearStore((state) => state.hydrated);
+  const setState = useBearStore((state) => state.setState);
   useEffect(() => {
-    console.log(state.a);
-  }, []);
+    console.log(16, hydrated);
+  }, [hydrated]);
   return (
     <div>
-      {locale}
-      {level}
+      <div>{bears}</div>
+      <button
+        onClick={() => {
+          setState({ bears: bears + 1 });
+        }}
+      >
+        增加
+      </button>
     </div>
   );
 }
