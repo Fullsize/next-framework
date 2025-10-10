@@ -1,8 +1,10 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { notFound } from "next/navigation";
 import "../globals.css";
+import "@ant-design/v5-patch-for-react-19";
 export default async function LocaleLayout({
   children,
   params,
@@ -23,7 +25,9 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <AntdRegistry>
+          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        </AntdRegistry>
       </body>
     </html>
   );

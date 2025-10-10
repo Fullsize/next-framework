@@ -2,6 +2,8 @@
 import React, { useEffect } from "react";
 import { useSetState } from "react-use";
 import useBearStore from "@/store/useGobal";
+import { Button } from "antd";
+import "@ant-design/v5-patch-for-react-19";
 export default function Page({
   params,
 }: {
@@ -17,13 +19,13 @@ export default function Page({
   return (
     <div>
       <div>{bears}</div>
-      <button
+      <Button
         onClick={() => {
-          setState({ bears: bears + 1 });
+          setState((prev) => ({ bears: prev.bears + 1 }));
         }}
       >
         增加
-      </button>
+      </Button>
     </div>
   );
 }
