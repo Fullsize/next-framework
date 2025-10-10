@@ -2,7 +2,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
-import LayoutConfig from "next/app";
+import "../globals.css";
 export default async function LocaleLayout({
   children,
   params,
