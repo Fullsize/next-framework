@@ -27,12 +27,9 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body>
         <div className="absolute left-0 top-0 w-full h-full flex flex-col">
-          <Header />
-          <div className="flex-1">
-            <AntdRegistry>
-              <NextIntlClientProvider>{children}</NextIntlClientProvider>
-            </AntdRegistry>
-          </div>
+          <AntdRegistry>
+            <NextIntlClientProvider>{children}</NextIntlClientProvider>
+          </AntdRegistry>
         </div>
       </body>
     </html>
