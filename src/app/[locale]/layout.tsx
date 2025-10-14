@@ -4,6 +4,7 @@ import { routing } from "@/i18n/routing";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { notFound } from "next/navigation";
 import Header from "@/components/header";
+import AAA from "@/components/aaaa";
 import "normalize.css";
 import "../globals.css";
 export default async function LocaleLayout({
@@ -21,12 +22,13 @@ export default async function LocaleLayout({
   }
 
   // Providing all messages to the client
-  // side is the easiest way to get started
+  // side is the easiest way to get started. NEXT_LOCALE
   // const messages = await getMessages();
   return (
-    <html lang={locale}>
+    <html lang={locale} dir="" style={{ fontSize: 20 }}>
       <body>
-        <div className="absolute left-0 top-0 w-full h-full flex flex-col">
+        <div className="w-full h-full absolute top-0 left-0">
+          <AAA />
           <AntdRegistry>
             <NextIntlClientProvider>{children}</NextIntlClientProvider>
           </AntdRegistry>

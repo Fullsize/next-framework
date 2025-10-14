@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useSetState } from "react-use";
 import useBearStore from "@/store/useGobal";
 import { Button } from "antd";
+import styles from "./index.module.css";
 export default function Page({
   params,
 }: {
@@ -18,6 +19,7 @@ export default function Page({
   return (
     <div>
       <div>{bears}</div>
+      <div className={"w-[200px]"}>111111</div>
       <Button
         onClick={() => {
           setState((prev) => ({ bears: prev.bears + 1 }));

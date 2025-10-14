@@ -3,7 +3,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import React from "react";
 export const metadata: Metadata = {
-  title: "My Blog",
+  title: "home",
   description: "...",
 };
 export async function generateStaticParams() {
