@@ -2,6 +2,7 @@ import { useT } from "@/hooks";
 import Image from "next/image";
 import type { Metadata } from "next";
 import React from "react";
+import { Link } from "@/i18n/navigation";
 export const metadata: Metadata = {
   title: "home",
   description: "...",
@@ -23,6 +24,7 @@ export default function HomePage({
       <h1 className="text-[red]">{t("title")}</h1>
       <Image src="/next.svg" width={200} height={80} alt="logo" />
       <p>当前语言：{locale}</p>
+      <Link href={"/111"}> 1313131</Link>
     </>
   );
 }

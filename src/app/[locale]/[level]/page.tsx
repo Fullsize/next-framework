@@ -14,7 +14,9 @@ export default function Page({
   const hydrated = useBearStore((state) => state.hydrated);
   const setState = useBearStore((state) => state.setState);
   useEffect(() => {
-    console.log(16, hydrated);
+    if (hydrated) {
+      console.log(hydrated);
+    }
   }, [hydrated]);
   return (
     <div>
