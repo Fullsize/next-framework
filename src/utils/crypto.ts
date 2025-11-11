@@ -1,31 +1,42 @@
-import crypto from 'crypto';
-
-const KEY = Buffer.from('12345678901234567890123456789012'); // 32 字节 AES-256
+// utils/aes-client.ts
+import CryptoJS from 'crypto-js';
+import { isProd } from './env'
+const KEY_STR = '12345678901234567890123456789012'; // 32 字节
+const KEY = CryptoJS.enc.Utf8.parse(KEY_STR);
 
 /**
- * AES 加密，返回 Hex 字符串
- * 格式: 前32字符 IV + 后面密文
+ * AES 加密，返回 Hex 字符串（前 32 字符是 IV）
  */
 export function encrypt(text: string): string {
-  const iv = crypto.randomBytes(16); // 16 字节 IV
-  const cipher = crypto.createCipheriv('aes-256-cbc', KEY, iv);
+  if (!isProd) return text
+  // 生成随机 IV
+  const iv = CryptoJS.lib.WordArray.random(16);
+  const encrypted = CryptoJS.AES.encrypt(text, KEY, { iv, mode: CryptoJS.mode.CBC });
 
-  const encrypted = Buffer.concat([cipher.update(text, 'utf8'), cipher.final()]);
-  // 拼接 IV + 密文，并转 Hex
-  return iv.toString('hex') + encrypted.toString('hex');
+  // 拼接 IV + 密文
+  return iv.toString(CryptoJS.enc.Hex) + encrypted.ciphertext.toString(CryptoJS.enc.Hex);
 }
 
 /**
  * AES 解密 Hex 字符串
- * @param data Hex 字符串
- * @returns 明文
  */
 export function decrypt(data: string): string {
-  const iv = Buffer.from(data.slice(0, 32), 'hex'); // 前32字符是 IV
-  const encrypted = Buffer.from(data.slice(32), 'hex');
+  if (!isProd) return data
+  const ivHex = data.slice(0, 32);
+  const encryptedHex = data.slice(32);
 
-  const decipher = crypto.createDecipheriv('aes-256-cbc', KEY, iv);
-  const decrypted = Buffer.concat([decipher.update(encrypted), decipher.final()]);
+  const iv = CryptoJS.enc.Hex.parse(ivHex);
+  const encrypted = CryptoJS.enc.Hex.parse(encryptedHex);
+  const cipherParams = CryptoJS.lib.CipherParams.create({ ciphertext: encrypted });
 
-  return decrypted.toString('utf8');
+  const decrypted = CryptoJS.AES.decrypt(cipherParams, KEY, { iv, mode: CryptoJS.mode.CBC });
+  return decrypted.toString(CryptoJS.enc.Utf8);
+}
+
+/**
+ * 转 Base64（可选）
+ */
+export function toBase64(str: string): string {
+  if (!isProd) return str
+  return CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(str));
 }

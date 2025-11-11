@@ -13,9 +13,11 @@ export default function Page({
   const bears = useBearStore((state) => state.bears);
   const hydrated = useBearStore((state) => state.hydrated);
   const setState = useBearStore((state) => state.setState);
+  console.time("hydrated");
   useEffect(() => {
     if (hydrated) {
-      console.log(hydrated);
+      console.log(bears);
+      console.timeEnd("hydrated");
     }
   }, [hydrated]);
   return (

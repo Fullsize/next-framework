@@ -7,10 +7,10 @@ export const metadata: Metadata = {
   title: "home",
   description: "...",
 };
-export async function generateStaticParams() {
-  // 👇 这里返回的 locale 会用来静态生成 en 和 zh 的页面
-  return [{ locale: "en" }, { locale: "zh" }];
-}
+// export async function generateStaticParams() {
+//   // 👇 这里返回的 locale 会用来静态生成 en 和 zh 的页面
+//   return [{ locale: "en" }, { locale: "zh" }];
+// }
 
 export default function HomePage({
   params,

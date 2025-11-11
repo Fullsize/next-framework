@@ -1,5 +1,6 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, devtools } from 'zustand/middleware'
+import { toBase64 } from '@/utils/crypto'
 import storage from '@/utils/storage'
 
 const DEFAULT_STATE = {
@@ -16,7 +17,7 @@ type BearStore = State & {
 }
 
 const useBearStore = create<BearStore>()(
-  persist(
+  devtools(persist(
     (set) => ({
       ...DEFAULT_STATE,
       setState: (value) =>
@@ -24,13 +25,15 @@ const useBearStore = create<BearStore>()(
       reset: () => set(DEFAULT_STATE)
     }),
     {
-      name: 'food-storage',
+      name: toBase64('food-storage'),
       storage,
+
       onRehydrateStorage: () => (state) => {
         useBearStore.getState().setState({ hydrated: true })
       },
     },
-  ),
+  ))
+  ,
 )
 
 export default useBearStore
