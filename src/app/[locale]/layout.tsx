@@ -4,6 +4,7 @@ import { routing } from "@/i18n/routing";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { notFound } from "next/navigation";
 import Header from "@/components/header";
+import QueryClientProvider from "@/components/QueryClientProvider";
 import ClientBase from "@/components/ClientBase";
 import "normalize.css";
 import "../globals.css";
@@ -30,7 +31,9 @@ export default async function LocaleLayout({
         <div className="w-full h-full absolute top-0 left-0">
           <ClientBase />
           <AntdRegistry>
-            <NextIntlClientProvider>{children}</NextIntlClientProvider>
+            <NextIntlClientProvider>
+              <QueryClientProvider>{children}</QueryClientProvider>
+            </NextIntlClientProvider>
           </AntdRegistry>
         </div>
       </body>
