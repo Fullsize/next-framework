@@ -21,6 +21,7 @@
     "normalize.css": "^8.0.1",
     "postcss-px-to-viewport": "^1.1.1",
     "postcss-pxtorem": "^6.1.0",
+    "primereact": "^10.9.7",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-use": "^17.6.0",

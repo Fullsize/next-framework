@@ -6,6 +6,10 @@ import { notFound } from "next/navigation";
 import Header from "@/components/header";
 import QueryClientProvider from "@/components/QueryClientProvider";
 import ClientBase from "@/components/ClientBase";
+
+import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
+import "primereact/resources/themes/saga-blue/theme.css";
+import "primereact/resources/primereact.min.css";
 import "normalize.css";
 import "../globals.css";
 export default async function LocaleLayout({
@@ -26,13 +30,15 @@ export default async function LocaleLayout({
   // side is the easiest way to get started. NEXT_LOCALE
   // const messages = await getMessages();
   return (
-    <html lang={locale} dir="" style={{ fontSize: 20 }}>
+    <html lang={locale} dir="" style={{ fontSize: 16 }}>
       <body>
         <div className="w-full h-full absolute top-0 left-0">
           <ClientBase />
           <AntdRegistry>
             <NextIntlClientProvider>
-              <QueryClientProvider>{children}</QueryClientProvider>
+              <PrimeReactProvider>
+                <QueryClientProvider>{children}</QueryClientProvider>
+              </PrimeReactProvider>
             </NextIntlClientProvider>
           </AntdRegistry>
         </div>
