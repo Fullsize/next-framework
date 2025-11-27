@@ -8,9 +8,9 @@ import QueryClientProvider from "@/components/QueryClientProvider";
 import ClientBase from "@/components/ClientBase";
 
 import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
+import "normalize.css";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
-import "normalize.css";
 import "../globals.css";
 export default async function LocaleLayout({
   children,
@@ -30,7 +30,7 @@ export default async function LocaleLayout({
   // side is the easiest way to get started. NEXT_LOCALE
   // const messages = await getMessages();
   return (
-    <html lang={locale} dir="" style={{ fontSize: 16 }}>
+    <html lang={locale} dir="">
       <body>
         <div className="w-full h-full absolute top-0 left-0">
           <ClientBase />

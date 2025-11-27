@@ -10,7 +10,7 @@ COPY package*.json ./
 RUN npm install --production
 
 # 复制本地构建好的 Next.js
-COPY .next ./.next
+COPY dist ./dist
 COPY public ./public
 COPY next.config.ts ./
 

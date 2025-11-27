@@ -15,7 +15,7 @@ else
 fi
 
 echo "🧹 删除旧的打包文件"
-rm -rf app.zip .next 
+rm -rf app.zip dist 
 
 echo "📦 执行构建命令: $BUILD_CMD"
 $BUILD_CMD
@@ -26,9 +26,9 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "🗜️ 创建压缩包（排除 node_modules）"
-zip -r app.zip .next public next.config.ts  Dockerfile  package.json package-lock.json
+zip -r app.zip dist public next.config.ts  Dockerfile  package.json package-lock.json
 
 echo "✅ 构建完成并已打包为 app.zip"
 
 echo "🧹 删除打包文件"
-rm -rf .next 
+rm -rf dist 
