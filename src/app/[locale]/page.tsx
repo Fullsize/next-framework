@@ -23,6 +23,7 @@ export default function HomePage(props: pageProps) {
       <h1 className="text-[red]">{t("title")}</h1>
       <p>当前语言：{locale}</p>
       <Link href={"/test"}> 1313131</Link>
+      <a href="/ar/test">阿拉伯语</a>
     </>
   );
 }

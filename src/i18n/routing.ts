@@ -1,11 +1,9 @@
-// src/i18n/routing.ts
-import { createNavigation } from 'next-intl/navigation';
 import { defineRouting } from "next-intl/routing";
 
 export const routing = defineRouting({
-  locales: ["en", "zh"],
+  locales: ['en', 'zh', 'ja', 'ko', 'de', 'ar'],
   defaultLocale: "en",
-  localePrefix: 'as-needed'
+  localePrefix: 'as-needed',
 });
 
 // export type Pathnames = keyof typeof routing.pathnames;

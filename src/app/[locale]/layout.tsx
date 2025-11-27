@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import Header from "@/components/header";
 import QueryClientProvider from "@/components/QueryClientProvider";
 import ClientBase from "@/components/ClientBase";
-
+import { getDir } from "@/utils/lang";
 import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
 import "normalize.css";
 import "primereact/resources/themes/saga-blue/theme.css";
@@ -17,7 +17,7 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: pageProps["params"];
 }) {
   const awaitedParams = await params;
   const locale = awaitedParams.locale;
@@ -30,9 +30,10 @@ export default async function LocaleLayout({
   // side is the easiest way to get started. NEXT_LOCALE
   // const messages = await getMessages();
   return (
-    <html lang={locale} dir="">
+    <html lang={locale} dir={getDir(locale)}>
       <body>
         <div className="w-full h-full absolute top-0 left-0">
+          {/* 用于一次处理 */}
           <ClientBase />
           <AntdRegistry>
             <NextIntlClientProvider>
